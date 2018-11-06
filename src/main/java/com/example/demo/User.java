@@ -6,6 +6,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
 
 @Entity
 @Table(name="User_data")
@@ -35,16 +36,18 @@ public class User {
     private Collection<Role> roles;
 
     public User(){
+        roles = new HashSet<>();
     }
-     public User(String email, String password, String firstName, String lastName, boolean enabled, String username){
+
+    public User(String email, String password, String firstName, String lastName, boolean enabled, String userName) {
         this.setEmail(email);
-        this.setPassword(password);
         this.setFirstName(firstName);
         this.setLastName(lastName);
         this.setEnabled(enabled);
-        this.setUserName(username);
-     }
-
+        this.setUserName(userName);
+        this.setPassword(password);
+        roles = new HashSet<>();
+    }
 
     public long getId() {
         return id;
