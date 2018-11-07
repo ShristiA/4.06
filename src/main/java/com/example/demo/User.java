@@ -5,6 +5,8 @@ package com.example.demo;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.HashSet;
 
@@ -29,6 +31,8 @@ public class User {
     private boolean enabled;
 
     @Column(name = "username")
+    @NotNull
+    @Size(min =3)
     private String userName;
 
     @ManyToMany(fetch = FetchType.EAGER)
